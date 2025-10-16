@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burbujas sin lagrimas</title>
+    <link rel="icon" type="image" href="../imagenes/logo.jpeg">
+<link rel="stylesheet" type="text/css" href="../css/style2.css">
+
+<style>
+    body{
+        background: 
+    #F5F5F5
+    url(../imagenes/fd.jpg)
+    no-repeat
+    top left/ cover;
+        
+    }
+
+#contenedor{
+    background: #D5A6E3; 
+    width: 1000px;
+    height: 1450px;
+    border-radius: 10px;
+
+
+}
+
+
+#encabezado{
+    background-color: #B39DDB; 
+    width: 900px;
+    height: 135px;
+    border-radius: 10px;
+
+
+}
+
+
+
+#menu{
+    background-color:#E1BEE7; 
+    width: 900px;
+    height: 90px;
+    border-radius: 10px;
+  
+}
+
+
+#contenido{
+    background-color: #D1C4E9; 
+    width: 900px;
+    height: 1000px;
+    border-radius: 10px;
+  
+
+}
+
+
+
+#pie{
+    background-color:#AB47BC; 
+    width: 900px;
+    height: 110px;
+    border-radius: 10px;
+    transform: translate(0%, -350%)
+
+}
+
+
+
+
+#button{
+    padding: 0%;
+}
+
+#button li {
+ display: inline;
+
+}
+
+#button li a{
+    background-color: #a99ebf;
+    font-size: large;
+    color: floralwhite;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+
+#button li a:hover {
+    background: #c9b2f3;
+    color: rgb(0, 0, 0);
+  
+}
+
+
+
+
+#button ul{
+    background-color: color-mix(in srgb, color percentage, color percentage);
+}
+#factura img{
+    width: 50%;
+    transition: transform 0.2s ease;
+}
+#factura img:hover{
+    transform: scale(1.5);
+}
+h1{
+    color: rgb(218, 105, 226);
+}
+#formu{
+  
+            width: 600px;
+            height: 300px;
+            margin: 0 auto;
+            padding: 5em;
+            box-sizing: border-box;
+            background: #d775f0;
+            border-style: double;
+            border-color: rgb(0, 0, 0);
+            transform: translate(0%, -120%);
+}
+form button{
+    width: 150px;
+            background-color: #B39DDB;
+            height: 50px;
+            padding: 0;
+            margin: 0;
+            box-shadow: border-box;
+}
+input {
+            width: 150px;
+            height: 20px;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+}
+
+table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 auto;
+            
+        }
+        td {
+            background-color: #d775f0;
+            text-align: center;
+            padding: 10px;
+        }
+
+</style>
+
+
+
+</head>
+
+<body><center>
+    
+    <div id="contenedor">
+        <br>
+        <div id="encabezado">
+            
+            <header>
+                <a href="#" class="logo">
+                    <img src="../imagenes/logo.jpeg" alt="logo de la empresa">
+                    <h2 class="logo-nombre">Burbujas sin lagrimas</h2>
+                </a>
+                <nav>
+                    <a href="https://maps.google.com/" class="nav-link">Dirección<img src="../imagenes/map.png" height="30px"></a>
+                    <a href="https://www.whatsapp.com/" class="nav-link">Whatsapp<img src="../imagenes/whatsapp.png" height="30px"></a>
+                    <a href="#" class="nav-link">Teléfono<img src="../imagenes/telefono.png" height="30px"></a>
+        
+               </nav>
+            </header>
+        
+
+      
+
+
+</div>
+<br>
+<div id="menu"> 
+<br>
+<ul id="button">
+<li><a href="../index.html">Inicio</a></li>
+<li><a href="../paginas/nuestra empresa.html">Nuestra empresa</a></li>
+<li><a href="../paginas/productos.html">productos</a></li>
+<li><a href="../paginas/contactenos.html">Contactenos</a></li>
+<li><a href="../paginas/inicio de secion.html">Inicio de sesion</a></li>
+<li><a href="#">Compras</a></li>
+</ul>
+
+
+</div>
+<br>
+<div id="contenido">
+<h1 style="text-align: center;">Burbujas sin lagrimas</h1>
+<div id="factura">
+    <table border="2" cellpadding="2" cellspacing="0">
+        <tr>
+            <td><h2>Producto uno</h2><img src="../imagenes/p1.jpeg"></td>
+            <td><h2>Producto dos</h2><img src="../imagenes/p2.jpeg"></td>
+            <td><h2>Producto tres</h2><img src="../imagenes/p3.jpeg"></td>
+        </tr>
+        <tr>
+            <td><h2>Producto cuatro</h2><img src="../imagenes/p4.jpeg"></td>
+            <td><h2>Producto cinco</h2><img src="../imagenes/p5.jpeg"></td>
+            <td><h2>Producto seis</h2><img src="../imagenes/p8.jpeg"></td>
+        </tr>
+    </table>
+</div>
+</div>
+<br>
+<br>
+<div id="formu">
+    <form>
+        <label for="Producto">Producto:</label>
+        <select name="Producto" id="Producto">
+            <option value="producto1">Producto1</option>
+                <option value="producto2">Producto2</option>
+                <option value="producto3">Producto3</option>
+                <option value="producto4">Producto4</option>
+                <option value="producto5">Producto5</option>
+                <option value="producto6">Producto6</option>
+        </select>
+        <label for="cantidad">Cantidad:</label>
+            <input type="number" name="cantidad" id="cantidad">
+            <br>
+            <button type="button" onclick="calculartotal()">Calcular total</button>
+    </form>
+    <p id="total"></p>
+</div>
+<script>
+      function calculartotal() {
+            const productoseleccionado = document.getElementById('Producto').value;
+            const cantidad = parseInt(document.getElementById('cantidad').value);
+
+            const precios = {
+                producto1: 100,
+                producto2: 200,
+                producto3: 300,
+                producto4: 400,
+                producto5: 500,
+                producto6: 600
+            };
+            const precio = precios[productoseleccionado];
+            const subtotal = precio * cantidad;
+            const total = subtotal;
+
+            document.getElementById('total').textContent = 'Total: $' + total;
+        }
+</script>
+<br>
+<br>
+<br>
+<br>
+<div id="pie">
+    <font face="Courier New" color="white" size="5">
+    <b>Burbujas sin lagrimas  </b> <br>                                         <b>telefono</b> 3005249414 <br>
+    <b>Dirección:</b>  Calle 41 sur #0-33 este <br>
+    <b>NIT:</b> 900.325.443-3           
+    
+    
+    </div>
+</div>
+
+
+</center>
+</body>
+</html>
+
+
+
+
