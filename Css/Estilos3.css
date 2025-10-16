@@ -1,0 +1,92 @@
+/* Fondo general con imagen y estilo moda */
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Segoe UI', sans-serif;
+	background: url('../Imagenes/pexels-kseniachernaya-3951790.jpg') no-repeat center center/cover;
+	backdrop-filter: blur(6px);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+  }
+  
+  /* Caja de login */
+  .caja1 {
+	background-color: rgba(255, 255, 255, 0.92);
+	border-radius: 18px;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+	padding: 40px 35px;
+	width: 350px;
+  }
+  
+  /* Título principal */
+  .formtlo {
+	text-align: center;
+	font-size: 28px;
+	font-weight: bold;
+	color: #1e1e1e;
+	margin-bottom: 25px;
+  }
+  
+  /* Etiquetas (como "Ingresar correo") */
+  .ub1 {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	font-weight: 600;
+	color: #444;
+	font-size: 14px;
+  }
+  
+  /* Inputs de texto, email y contraseña */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+	width: 100%;
+	padding: 12px;
+	border-radius: 10px;
+	border: 1px solid #aaa;
+	font-size: 14px;
+	box-sizing: border-box;
+	margin-bottom: 10px;
+  }
+  
+  /* Estilo del checkbox para ver contraseña */
+  input[type="checkbox"] {
+	transform: scale(1.1);
+	margin-right: 5px;
+	cursor: pointer;
+  }
+  
+  /* Botones de enviar y reset */
+  input[type="submit"],
+  input[type="reset"] {
+	width: 45%;
+	padding: 12px;
+	border-radius: 10px;
+	border: none;
+	margin-top: 20px;
+	font-weight: bold;
+	font-size: 14px;
+	cursor: pointer;
+	transition: background 0.3s;
+  }
+  
+  input[type="submit"] {
+	background-color: #000;
+	color: #fff;
+  }
+  
+  input[type="reset"] {
+	background-color: #ddd;
+	color: #333;
+  }
+  
+  input[type="submit"]:hover {
+	background-color: #333;
+  }
+  
+  input[type="reset"]:hover {
+	background-color: #bbb;
+  }
+  

@@ -1,0 +1,120 @@
+:root {
+    --color-principal: #ffffff;   
+    --color-secundario: #ffffff;  
+    --color-fondo: #D3D3D3;       
+    --color-enlace: #4F4F4F;      
+    --hover-enlace: #585858;      
+    --color-division: #B0B0B0;    
+}
+
+
+#seccion3 {
+    max-width: 1000px;
+    padding: 20px;
+    background: #B0B0B0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.seccion-titulo {
+    color: var(--color-principal);
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+.producto-columna {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.producto-item {
+    background-color: #D3D3D3;
+    border: 1px solid var(--color-division);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.producto-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.producto-nombre {
+    font-size: 1.2rem;
+    color: var(--color-principal);
+    margin: 0;
+}
+
+.producto-descripcion {
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+    margin-top: 5px;
+}
+
+
+#formulario {
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-division);
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+    color: var(--color-secundario);
+}
+
+form select,
+form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid var(--color-division);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+button {
+    background-color: var(--color-principal);
+    color: #110e0e;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-top: 15px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: var(--hover-enlace);
+}
+
+#total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-top: 15px;
+    color: var(--color-principal);
+    text-align: center;
+}

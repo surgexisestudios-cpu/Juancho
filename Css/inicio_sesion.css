@@ -1,0 +1,150 @@
+/* Fondo general con imagen y estilo moda */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('../Imagenes/pexels-kseniachernaya-3951790.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Caja de login con glassmorphism elegante */
+.caja1 {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  padding: 45px 40px;
+  width: 360px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+}
+
+/* Transición de entrada */
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(40px); }
+}
+
+/* Título principal */
+.formtlo {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* Etiquetas (como "Ingresar correo") */
+.ub1 {
+  margin-top: 18px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 14px;
+  color: #eaeaea;
+}
+
+/* Inputs glass */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-size: 15px;
+  margin-bottom: 15px;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ffcc00;
+}
+
+/* Placeholder moderno */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Checkbox elegante */
+input[type="checkbox"] {
+  transform: scale(1.1);
+  margin-right: 8px;
+  accent-color: #ffcc00;
+  cursor: pointer;
+}
+
+/* Botones modernos */
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+  width: 48%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 22px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Botón principal */
+input[type="submit"] {
+  background-color: #ffcc00;
+  color: #000;
+  box-shadow: 0 4px 12px rgba(255, 204, 0, 0.3);
+}
+
+input[type="submit"]:hover {
+  background-color: #e6b800;
+  transform: translateY(-2px);
+}
+
+/* Botón cancelar */
+input[type="reset"],
+input[type="button"] {
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+input[type="reset"]:hover,
+input[type="button"]:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+.btn-form {
+  display: inline-block;
+  width: 48%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  margin-top: 22px;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: #fff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-form:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}

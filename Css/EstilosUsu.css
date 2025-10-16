@@ -1,0 +1,74 @@
+
+/* 1. Variables globales (puedes ajustar los tonos de gris aquí) */
+:root {
+  --gris-claro: #f8f9fa;
+  --gris-medio: #e9ecef;
+  --gris-oscuro: #adb5bd;
+  --bs-primary: #afb1b9;      /* si quieres cambiar el color primario */
+  --bs-primary-hover: #7a797d;
+}
+
+/* 2. Estilos para la tabla */
+.table {
+  background-color: var(--gris-claro);
+  border: 1px solid var(--gris-medio);
+}
+
+.table thead th {
+  background-color: var(--gris-medio);
+  color: #212529;
+  border-color: var(--gris-oscuro);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--gris-claro);
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* 3. Botones primarios (si quieres cambiar su color) */
+.btn-primary {
+  background-color: var(--bs-primary);
+  border-color: var(--bs-primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--bs-primary-hover);
+  border-color: var(--bs-primary-hover);
+}
+
+/* 4. Sección de bienvenida */
+.Bienvenido-admin {
+  background-color: var(--gris-medio);
+  padding: 15px 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #212529;
+  text-align: center;
+}
+/* Botón Editar en gris medio */
+.btn-warning {
+    background-color: var(--gris-medio);
+    border-color: var(--gris-oscuro);
+    color: #212529;
+  }
+  .btn-warning:hover {
+    background-color: var(--gris-oscuro);
+    border-color: var(--gris-oscuro);
+  }
+  
+  /* Botón Eliminar en gris claro */
+  .btn-danger {
+    background-color: var(--gris-claro);
+    border-color: var(--gris-medio);
+    color: #212529;
+  }
+  .btn-danger:hover {
+    background-color: var(--gris-medio);
+    border-color: var(--gris-oscuro);
+  }
+  

@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <title>BULLYING-JUAN EVANGELISTA GOMEZ</title>
+  <link rel="icon" type="image/x-icon" href="../Imagenes/ESC_ico.ico" />
+  <style>
+   body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  background: url(../Imagenes/cole_fondo.jpeg) no-repeat center center fixed;
+  background-size: cover;
+}
+a.boton-verde {
+  display: inline-block;
+  background-color: #00c738; /* verde base */
+  color: white;
+  padding: 10px 18px;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a.boton-verde:hover {
+  background-color: #218838; /* verde más oscuro al pasar el mouse */
+  transform: scale(1.05); /* pequeño aumento visual */
+}
+
+a.boton-verde:active {
+  background-color: #1e7e34; /* verde más profundo al presionar */
+  transform: scale(0.98);
+}
+
+
+    #container {
+      display: flex;
+      flex-grow: 1;
+      max-width: 1200px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #game-area {
+      flex: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: #ffffffee;
+      position: relative;
+    }
+
+    #instructions {
+      flex: 1;
+      background: #222;
+      color: #eee;
+      padding: 20px;
+      font-size: 16px;
+      overflow-y: auto;
+      line-height: 1.6;
+    }
+
+    h2 {
+      margin-top: 0;
+      color: #0e7b00;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #00c738;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00931d;
+    }
+
+    #puzzle {
+      display: grid;
+      grid-template-columns: repeat(3, 100px);
+      grid-template-rows: repeat(3, 100px);
+      gap: 5px;
+      margin-top: 10px;
+      user-select: none;
+    }
+
+    .puzzle-piece {
+      background: #008a09;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 6px;
+      user-select: none;
+      padding: 6px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .puzzle-number {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .puzzle-word {
+      font-size: 12px;
+      margin-top: 4px;
+      line-height: 1.1;
+    }
+
+    .puzzle-piece.empty {
+      background: #ddd;
+      cursor: default;
+    }
+
+    #mazeCanvas {
+      border: 2px solid #e23d4a;
+      background-color: #fff;
+      display: none;
+      margin: 10px auto;
+      border-radius: 8px;
+      max-width: 800px;
+      width: 100%;
+      height: auto;
+    }
+
+    #timer {
+      font-size: 18px;
+      color: #d33;
+      margin-top: 10px;
+      display: none;
+    }
+
+    #sudoku-container {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #sudoku {
+      display: grid;
+      grid-template-columns: repeat(9, 40px);
+      grid-template-rows: repeat(9, 40px);
+      gap: 2px;
+      justify-content: center;
+    }
+
+    .sudoku-cell {
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      border: 1px solid #999;
+      outline: none;
+      width: 40px;
+      height: 40px;
+      box-sizing: border-box;
+    }
+
+    .sudoku-cell[readonly] {
+      background-color: #ddd;
+      color: #000;
+    }
+
+    .sudoku-cell.invalid {
+      background-color: #fdd;
+    }
+
+    /* Overlay final */
+    #finalOverlay {
+      position: absolute;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.6);
+      z-index: 30;
+      flex-direction: column;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      gap: 12px;
+    }
+
+    #finalCard {
+      background: linear-gradient(135deg, rgba(226,61,74,0.98), rgba(226,61,74,0.85));
+      padding: 24px 28px;
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      max-width: 600px;
+    }
+
+    #finalPhrase {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 900ms forwards 200ms;
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #confettiCanvas {
+      position: absolute;
+      left: 0; top: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    #finalButtons button { margin: 6px; }
+
+    /* Márgenes gruesos para los bloques 3x3 del Sudoku */
+.sudoku-cell {
+  border: 1px solid #999;
+}
+
+.sudoku-cell:nth-child(3n+1) {
+  border-left: 3px solid #000;
+}
+
+.sudoku-cell:nth-child(9n) {
+  border-right: 3px solid #000;
+}
+
+.sudoku-cell {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+.sudoku-cell[data-row="0"] {
+  border-top: 3px solid #000;
+}
+
+.sudoku-cell[data-row="8"] {
+  border-bottom: 3px solid #000;
+}
+
+/* Líneas horizontales gruesas cada 3 filas */
+.sudoku-cell[data-row="3"],
+.sudoku-cell[data-row="6"] {
+  border-top: 3px solid #000;
+}
+
+  </style>
+</head>
+<body>
+  <div id="container">
+    <div id="game-area">
+      <h2 id="levelTitle">Nivel 1: Reconstruye tu autoestima</h2>
+      <div id="timer">Tiempo: <span id="time">60</span>s</div>
+      <div id="puzzle"></div>
+      <canvas id="mazeCanvas" width="800" height="800"></canvas>
+      <div id="sudoku-container">
+        <div id="sudoku"></div>
+      </div>
+      <button id="nextLevelBtn" style="display:none;">Siguiente Nivel</button>
+      <button id="restartBtn" style="display:none;">Reiniciar Nivel</button>
+      <br>
+     
+
+
+      <!-- Overlay final con frase inspiradora -->
+      <div id="finalOverlay">
+        <canvas id="confettiCanvas"></canvas>
+        <div id="finalCard">
+          <div id="finalPhrase">Cree en ti, nadie puede apagar tu luz interior.</div>
+          <div id="finalButtons">
+            <button id="playAgainBtn">Jugar de nuevo</button>
+            <button id="closeBtn">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="instructions">
+      <h2>Instrucciones</h2>
+      <p><strong>¡Bienvenido a "Rompe el ciclo del Bullying"!</strong></p>
+      <p>Este juego simboliza el camino para superar el bullying escolar. Cada nivel refleja un reto que alguien vive en el colegio y cómo puede salir adelante.</p>
+
+      <h3>Nivel 1: Reconstruyendo tu autoestima</h3>
+      <ul>
+        <li>Ordena las piezas y descubre la frase motivadora oculta.</li>
+      </ul>
+
+      <h3>Nivel 2: Escapando de los insultos</h3>
+      <ul>
+        <li>Guía a tu personaje con las <strong>flechas</strong>.</li>
+        <li>Evita las trampas: cada una representa un insulto o burla.</li>
+        <li>Llega al cuadro rojo: allí encuentras apoyo y seguridad.</li>
+      </ul>
+
+      <h3>Nivel 3: Recuperando el equilibrio</h3>
+      <ul>
+        <li>Llena la cuadrícula para demostrar que tu vida puede ordenarse otra vez.</li>
+      </ul>
+    <center><a href="../index.php"> <button>Volver al inicio</button></a></center>
+    </div>
+  </div>
+  <script>
+    let nivel = 1;
+    const puzzleDiv = document.getElementById("puzzle");
+    const mazeCanvas = document.getElementById("mazeCanvas");
+    const ctx = mazeCanvas.getContext("2d");
+    const nextBtn = document.getElementById("nextLevelBtn");
+    const restartBtn = document.getElementById("restartBtn");
+    const timerDiv = document.getElementById("timer");
+    const timeSpan = document.getElementById("time");
+    const sudokuContainer = document.getElementById("sudoku-container");
+    const sudokuDiv = document.getElementById("sudoku");
+
+    const finalOverlay = document.getElementById('finalOverlay');
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const confettiCtx = confettiCanvas.getContext('2d');
+    const playAgainBtn = document.getElementById('playAgainBtn');
+    const closeBtn = document.getElementById('closeBtn');
+
+    // Frase (cada palabra corresponde a un número 1..9)
+    const frase = "Con empatía y respeto podemos transformar el mundo entero.".split(" ");
+
+    // --- NIVEL 1: PUZZLE ---
+    function crearPuzzle() {
+      const pieces = [1,2,3,4,5,6,7,8,null];
+      pieces.sort(() => Math.random() - 0.5);
+
+      puzzleDiv.innerHTML = '';
+      pieces.forEach((n, i) => {
+        const d = document.createElement('div');
+        d.className = 'puzzle-piece' + (n === null ? ' empty' : '');
+        if (n !== null) {
+          const num = document.createElement('div');
+          num.className = 'puzzle-number';
+          num.textContent = n;
+          const word = document.createElement('div');
+          word.className = 'puzzle-word';
+          word.textContent = frase[n-1] || '';
+          d.appendChild(num);
+          d.appendChild(word);
+        }
+        d.onclick = () => moverPieza(i);
+        puzzleDiv.appendChild(d);
+      });
+    }
+
+    function moverPieza(index) {
+      const items = [...puzzleDiv.children];
+      const empty = items.findIndex(d => d.classList.contains('empty'));
+      const valid = [empty-1, empty+1, empty-3, empty+3];
+      if (valid.includes(index)) {
+        if ((index === empty - 1 && empty % 3 === 0) || (index === empty + 1 && index % 3 === 0)) return;
+        const tmpHTML = items[empty].innerHTML;
+        items[empty].innerHTML = items[index].innerHTML;
+        items[index].innerHTML = tmpHTML;
+        items[empty].classList.remove('empty');
+        items[index].classList.add('empty');
+        if (puzzleResuelto()) {
+          alert('¡Muy bien! Has descubierto la frase motivadora.');
+          nextBtn.style.display = 'inline-block';
+        }
+      }
+    }
+
+    function puzzleResuelto() {
+      const items = [...puzzleDiv.children];
+      for (let i = 0; i < 8; i++) {
+        const numEl = items[i].querySelector('.puzzle-number');
+        if (!numEl) return false;
+        if (parseInt(numEl.textContent) !== i+1) return false;
+      }
+      return items[8].classList.contains('empty');
+    }
+
+    // --- NIVEL 2: LABERINTO ---
+    const mazeMap = [
+      [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+      [0,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1],
+      [1,1,1,0,1,0,1,1,0,1,0,1,0,1,0,1,1,1,0,1],
+      [1,0,0,0,1,0,1,1,0,0,0,1,0,0,0,1,1,1,0,1],
+      [1,0,1,0,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1],
+      [1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,1],
+      [1,0,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,0,1],
+      [1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,0,1],
+      [1,1,1,0,1,1,1,0,1,0,0,1,1,1,1,1,0,0,0,1],
+      [1,0,0,0,1,1,0,0,1,1,0,0,0,1,1,1,0,1,0,1],
+      [1,1,1,1,1,0,0,1,1,1,0,1,0,1,1,1,0,1,0,1],
+      [1,1,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,1,0,1],
+      [1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,1,0,1,0,1],
+      [1,1,0,1,0,0,0,1,0,1,1,0,0,0,1,1,0,1,0,1],
+      [1,0,0,1,0,1,0,1,0,0,0,0,1,0,0,0,0,1,0,1],
+      [1,0,1,1,1,1,0,1,0,1,0,1,1,1,1,1,0,1,0,1],
+      [1,0,1,0,0,0,0,1,0,1,1,0,0,0,1,1,0,1,0,1],
+      [1,0,1,0,1,1,0,1,1,1,1,0,1,0,0,0,0,0,0,0],
+      [1,0,0,0,1,1,0,0,0,0,0,0,1,1,1,1,1,1,1,0],
+      [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0]
+    ];
+    const goal = {x:19, y:19};
+    const trampas = [
+      {x:16, y:7, insulto:"¡Eres un perdedor!"},
+      {x:16, y:16, insulto:"¡Nadie te quiere!"},
+      {x:13, y:16, insulto:"¡Siempre te equivocas!"},
+      {x:18, y:1, insulto:"¡Eres un inútil!"}
+    ];
+    let pos = {x:0, y:0};
+    let tiempoRestante = 30;
+    let temporizador;
+
+    function drawMaze() {
+      const rows = mazeMap.length;
+      const cols = mazeMap[0].length;
+      const size = mazeCanvas.width / cols;
+      mazeCanvas.style.width = '800px';
+      mazeCanvas.style.height = '800px';
+      ctx.clearRect(0, 0, mazeCanvas.width, mazeCanvas.height);
+
+      for (let y=0; y<rows; y++) {
+        for (let x=0; x<cols; x++) {
+          ctx.fillStyle = mazeMap[y][x] === 1 ? '#000' : '#eee';
+          ctx.fillRect(x*size, y*size, size, size);
+        }
+      }
+
+      for (const t of trampas) {
+        ctx.fillStyle = 'purple';
+        ctx.fillRect(t.x * size, t.y * size, size, size);
+        ctx.fillStyle = '#fff';
+        ctx.font = `${Math.max(8, size/4)}px Arial`;
+        ctx.fillText('!', t.x*size + size*0.35, t.y*size + size*0.65);
+      }
+
+      ctx.fillStyle = 'green';
+      ctx.fillRect(0, 0, size, size);
+
+      ctx.fillStyle = 'red';
+      ctx.fillRect(goal.x*size, goal.y*size, size, size);
+
+      ctx.fillStyle = 'blue';
+      ctx.beginPath();
+      ctx.arc(pos.x*size + size/2, pos.y*size + size/2, size/3, 0, 2 * Math.PI);
+      ctx.fill();
+    }
+
+    function checkTrampa() {
+      for (const t of trampas) {
+        if (t.x === pos.x && t.y === pos.y) {
+          alert(`Insulto recibido: "${t.insulto}"\n\nRecuerda: esas palabras NO definen quién eres. Vuelves al inicio.`);
+          pos = {x:0, y:0};
+          drawMaze();
+          break;
+        }
+      }
+    }
+
+    function mover(dx, dy) {
+      const nx = pos.x + dx;
+      const ny = pos.y + dy;
+      if (
+        ny >= 0 && ny < mazeMap.length &&
+        nx >= 0 && nx < mazeMap[0].length &&
+        mazeMap[ny][nx] === 0
+      ) {
+        pos = { x: nx, y: ny };
+        drawMaze();
+        checkTrampa();
+        if (nx === goal.x && ny === goal.y) {
+          clearInterval(temporizador);
+          alert('¡Genial! Lograste escapar de los insultos.');
+          nextBtn.style.display = 'inline-block';
+          window.removeEventListener('keydown', teclas);
+        }
+      }
+    }
+
+    function teclas(e) {
+      if (e.key === 'ArrowUp') mover(0, -1);
+      if (e.key === 'ArrowDown') mover(0, 1);
+      if (e.key === 'ArrowLeft') mover(-1, 0);
+      if (e.key === 'ArrowRight') mover(1, 0);
+    }
+
+    function iniciarTemporizador() {
+      timerDiv.style.display = "block";
+      tiempoRestante = 60;
+      timeSpan.textContent = tiempoRestante;
+      clearInterval(temporizador);
+      temporizador = setInterval(() => {
+        tiempoRestante--;
+        timeSpan.textContent = tiempoRestante;
+        if (tiempoRestante <= 0) {
+          clearInterval(temporizador);
+          alert("¡Tiempo agotado! Intenta de nuevo.");
+          mostrarNivel(2);
+        }
+      }, 1000);
+    }
+
+    // --- NIVEL 3: SUDOKU ---
+    const sudokuPuzzle = [
+      [0,0,0,0,0,0,9,4,0],
+      [0,0,6,0,0,2,0,0,0],
+      [7,0,0,0,0,9,0,0,0],
+      [0,0,4,0,0,3,0,0,0],
+      [6,0,0,5,0,0,0,0,8],
+      [0,0,0,9,0,0,0,1,0],
+      [0,0,0,1,0,0,0,0,7],
+      [0,0,0,6,0,0,5,0,0],
+      [0,3,7,0,0,0,0,0,0]
+    ];
+
+    function crearSudoku() {
+      sudokuDiv.innerHTML = '';
+      for (let row = 0; row < 9; row++) {
+        for (let col = 0; col < 9; col++) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.maxLength = 1;
+          input.className = 'sudoku-cell';
+          input.dataset.row = row;
+          input.dataset.col = col;
+
+          const value = sudokuPuzzle[row][col];
+          if (value !== 0) {
+            input.value = value;
+            input.readOnly = true;
+          } else {
+            input.addEventListener('input', validarSudoku);
+          }
+
+          sudokuDiv.appendChild(input);
+        }
+      }
+    }
+
+    function validarSudoku() {
+      const getCellValue = (r, c) => {
+        const cell = sudokuDiv.querySelector(`input[data-row="${r}"][data-col="${c}"]`);
+        return parseInt(cell.value) || 0;
+      };
+
+      let valido = true;
+      sudokuDiv.querySelectorAll('input').forEach(cell => {
+        cell.classList.remove('invalid');
+      });
+
+      for (let i = 0; i < 9; i++) {
+        const fila = new Set();
+        const columna = new Set();
+        for (let j = 0; j < 9; j++) {
+          const f = getCellValue(i, j);
+          const c = getCellValue(j, i);
+          if (f && fila.has(f)) { marcarInvalido(i, j); valido = false; } else { fila.add(f); }
+          if (c && columna.has(c)) { marcarInvalido(j, i); valido = false; } else { columna.add(c); }
+        }
+      }
+
+      for (let br = 0; br < 3; br++) {
+        for (let bc = 0; bc < 3; bc++) {
+          const block = new Set();
+          for (let r = 0; r < 3; r++) {
+            for (let c = 0; c < 3; c++) {
+              const val = getCellValue(br*3 + r, bc*3 + c);
+              if (val) {
+                if (block.has(val)) {
+                  marcarInvalido(br*3 + r, bc*3 + c);
+                  valido = false;
+                }
+                block.add(val);
+              }
+            }
+          }
+        }
+      }
+
+      if (valido && [...sudokuDiv.querySelectorAll('input')].every(input => parseInt(input.value))) {
+        setTimeout(() => {
+          showFinalMessage();
+        }, 300);
+      }
+
+      function marcarInvalido(r, c) {
+        const cell = sudokuDiv.querySelector(`input[data-row="${r}"][data-col="${c}"]`);
+        if (cell) cell.classList.add('invalid');
+      }
+    }
+
+    // --- Cambio de niveles ---
+    function mostrarNivel(n) {
+      nivel = n;
+      nextBtn.style.display = 'none';
+      restartBtn.style.display = 'inline-block';
+      document.getElementById('levelTitle').textContent = 'Nivel ' + n + (n===1?': Reconstruye tu autoestima': n===2?': Escapando de los insultos':': Recuperando el equilibrio');
+      puzzleDiv.style.display = mazeCanvas.style.display = sudokuContainer.style.display = 'none';
+      timerDiv.style.display = 'none';
+      clearInterval(temporizador);
+      window.removeEventListener('keydown', teclas);
+
+      if (n === 1) {
+        puzzleDiv.style.display = 'grid';
+        crearPuzzle();
+      } else if (n === 2) {
+        mazeCanvas.style.display = 'block';
+        pos = {x:0, y:0};
+        drawMaze();
+        iniciarTemporizador();
+        window.addEventListener('keydown', teclas);
+      } else if (n === 3) {
+        sudokuContainer.style.display = 'block';
+        crearSudoku();
+      }
+    }
+
+    nextBtn.onclick = () => mostrarNivel(nivel + 1);
+    restartBtn.onclick = () => mostrarNivel(nivel);
+    mostrarNivel(1);
+
+    // --- FINAL message + confetti simple ---
+    function resizeConfetti() {
+      confettiCanvas.width = finalOverlay.clientWidth;
+      confettiCanvas.height = finalOverlay.clientHeight;
+    }
+
+    let confettiParticles = [];
+
+    function startConfetti() {
+      resizeConfetti();
+      confettiParticles = [];
+      for (let i=0;i<120;i++) {
+        confettiParticles.push({ x: Math.random()*confettiCanvas.width, y: Math.random()*-confettiCanvas.height, r: Math.random()*6+4, vx: Math.random()*2-1, vy: Math.random()*3+2, color: `hsl(${Math.random()*360},80%,60%)` });
+      }
+      requestAnimationFrame(confettiLoop);
+    }
+
+    function confettiLoop() {
+      confettiCtx.clearRect(0,0,confettiCanvas.width,confettiCanvas.height);
+      confettiParticles.forEach(p=>{
+        confettiCtx.fillStyle = p.color;
+        confettiCtx.beginPath();
+        confettiCtx.ellipse(p.x,p.y,p.r,p.r/1.6,0,0,Math.PI*2);
+        confettiCtx.fill();
+        p.x += p.vx; p.y += p.vy; p.vy += 0.02;
+        if (p.y>confettiCanvas.height+20) { p.y = -10; p.x = Math.random()*confettiCanvas.width; p.vy = Math.random()*3+2; }
+      });
+      if (finalOverlay.style.display !== 'none') requestAnimationFrame(confettiLoop);
+    }
+
+    function showFinalMessage() {
+      finalOverlay.style.display = 'flex';
+      resizeConfetti();
+      startConfetti();
+    }
+
+    playAgainBtn.onclick = () => { finalOverlay.style.display='none'; mostrarNivel(1); };
+    closeBtn.onclick = () => { finalOverlay.style.display='none'; };
+
+    window.addEventListener('resize', resizeConfetti);
+  </script>
+</body>
+</html>
